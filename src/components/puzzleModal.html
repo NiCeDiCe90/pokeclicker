@@ -7,10 +7,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body" data-bind="with: PuzzleController.currentPuzzle">
+            <div class="modal-body" data-bind="with: App.game.puzzleController.currentPuzzle">
                 <img data-bind="attr:{src: PokemonHelper.getImage(pokemonId)}" style="max-width:96px" class="mb-2"/>
                 <p data-bind="text: 'Difficulty: ' + difficulty"></p>
-                <button class="btn btn-success" data-bind="click: PuzzleController.solveCurrent">Solve</button>
+                <button class="btn btn-success" data-bind="click: App.game.puzzleController.solveCurrent">Solve</button>
             </div>
         </div>
     </div>
