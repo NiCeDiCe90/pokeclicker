@@ -341,6 +341,7 @@ aria-labelledby="pokedexModalLabel">
                                             <!-- /ko -->
                                             <img style="position: absolute; top: 24px; right: 0px;" class="shadow-icon" src="assets/images/status/shadow.svg" data-bind="visible: App.game.party.getPokemon($data.id).shadow == GameConstants.ShadowStatus.Shadow"/>
                                             <img style="position: absolute; top: 24px; right: 0px;" class="shadow-icon" src="assets/images/status/purified.svg" data-bind="visible: App.game.party.getPokemon($data.id).shadow == GameConstants.ShadowStatus.Purified"/>
+                                            <img style="position: absolute; bottom: 0; left: 0;" class="puzzle-medal" src="assets/images/currency/contestToken.svg" data-bind="visible: App.game.statistics.pokemonPuzzleSolved[$data.id]() > 0"/>
                                         <!-- /ko -->
                                         <img src="" class="pokedex-pokemon-sprite" data-bind="css: { 'pokemon-not-seen': !PokedexHelper.pokemonSeen($data.id)(), 'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(name) && PokedexHelper.pokemonSeen($data.id)() }, attr:{ src: PokemonHelper.getImage($data.id)}">
                                         <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->

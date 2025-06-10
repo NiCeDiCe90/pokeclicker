@@ -144,6 +144,7 @@ export default class Statistics implements Saveable {
     shinyPokemonHatched: PokemonStats;
     shadowPokemonCaptured: PokemonStats;
     shadowPokemonDefeated: PokemonStats;
+    pokemonPuzzleSolved: PokemonStats;
     npcTalkedTo: Record<string, KnockoutObservable<number>>;
 
     observables = [
@@ -250,6 +251,7 @@ export default class Statistics implements Saveable {
         'shinyPokemonHatched',
         'shadowPokemonCaptured',
         'shadowPokemonDefeated',
+        'pokemonPuzzleSolved',
         'npcTalkedTo',
         'undergroundToolsUsed',
     ];

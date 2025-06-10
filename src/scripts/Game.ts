@@ -43,6 +43,7 @@ class Game implements TmpGameType {
     public saveReminder: SaveReminder;
     public battleCafe: BattleCafeSaveObject;
     public dreamOrbController: DreamOrbController;
+    public puzzleController: PuzzleController;
     public purifyChamber: PurifyChamber;
     public weatherApp: WeatherApp;
     public zMoves: ZMoves;
@@ -82,6 +83,7 @@ class Game implements TmpGameType {
         this.saveReminder = new SaveReminder();
         this.battleCafe = new BattleCafeSaveObject();
         this.dreamOrbController = new DreamOrbController();
+        this.puzzleController = new PuzzleController();
         this.purifyChamber = new PurifyChamber();
         this.weatherApp = new WeatherApp();
         this.zMoves = new ZMoves();

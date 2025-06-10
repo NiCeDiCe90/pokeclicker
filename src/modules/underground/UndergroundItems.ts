@@ -152,3 +152,4 @@ UndergroundItems.addItem(new UndergroundMegaStoneItem(MegaStoneType.Sablenite, 5
 
 // Other
 UndergroundItems.addItem(new UndergroundItem(600, 'Palaeontologist_token', [[0, 0, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [1, 1, 1, 1, 1, 1], [0, 1, 1, 1, 1, 1], [0, 0, 1, 1, 1, 1], [0, 0, 1, 1, 1, 0], [0, 0, 0, 1, 1, 0], [0, 0, 0, 1, 1, 1]], 1, UndergroundItemValueType.Special));
+UndergroundItems.addItem(new UndergroundItem(601, 'Puzzle_plate', [[1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1], [1, 1, 1, 1, 1]], 0, UndergroundItemValueType.Special));
