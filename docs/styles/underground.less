@@ -1,0 +1,246 @@
+#mineModal {
+    ul.nav {
+        width: 100%;
+    }
+}
+
+.mineInventoryItem {
+    width: 28px;
+}
+
+.rock5 {
+    background-image: url('../assets/images/underground/rock5.png');
+    background-size: 100%;
+}
+
+.rock4 {
+    background-image: url('../assets/images/underground/rock4.png');
+    background-size: 100%;
+}
+
+.rock3 {
+    background-image: url('../assets/images/underground/rock3.png');
+    background-size: 100%;
+}
+
+.rock2 {
+    background-image: url('../assets/images/underground/rock2.png');
+    background-size: 100%;
+}
+
+.rock1 {
+    background-image: url('../assets/images/underground/rock1.png');
+    background-size: 100%;
+}
+
+.rock0 {
+    background-image: url('../assets/images/underground/rock0.png');
+    background-size: 100%;
+}
+
+.survey::after {
+    content: "";
+}
+
+.survey {
+    position: absolute;
+    z-index: 50;
+    pointer-events: none;
+    border: 1px solid #FFC300;
+    background: rgba(255, 195, 0, 20%);
+
+    &.survey-1 {
+        top: -0%;
+        left: -0%;
+        width: 100%;
+        height: 100%;
+    }
+
+    &.survey-3 {
+        top: -100%;
+        left: -100%;
+        width: 300%;
+        height: 300%;
+    }
+
+    &.survey-5 {
+        top: -200%;
+        left: -200%;
+        width: 500%;
+        height: 500%;
+    }
+
+    &.survey-7 {
+        top: -300%;
+        left: -300%;
+        width: 700%;
+        height: 700%;
+    }
+
+    &.survey-9 {
+        top: -400%;
+        left: -400%;
+        width: 900%;
+        height: 900%;
+    }
+}
+
+
+.restore-item {
+    width: 32px;
+    margin: -5px;
+}
+
+.mineSquare {
+    aspect-ratio: 1 / 1;
+    position: relative;
+
+    .rock {
+        position: absolute;
+        inset: 0;
+    }
+}
+
+.ChiselSelected {
+    cursor: url('../assets/images/underground/Chisel.png') 5 25, auto;
+
+    &:active {
+        cursor: url('../assets/images/underground/Chisel.png') 5 20, auto;
+    }
+}
+
+.HammerSelected {
+    cursor:url('../assets/images/underground/Hammer.png') 5 15, auto;
+
+    &:active {
+        cursor:url('../assets/images/underground/Hammer.png') 5 10, auto;
+    }
+}
+
+.BombSelected {
+    cursor:url('../assets/images/underground/Bomb.png') 5 15, auto;
+
+    &:active {
+        cursor:url('../assets/images/underground/Bomb.png') 5 10, auto;
+    }
+}
+
+.SurveySelected {
+    cursor:url('../assets/images/underground/Survey.png') 5 15, auto;
+
+    &:active {
+        cursor:url('../assets/images/underground/Survey.png') 5 10, auto;
+    }
+}
+
+#mineBody.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.5;
+}
+
+#mineBody {
+    display: grid;
+    grid-template-columns: repeat(25, 1fr);
+    position: relative;
+    overflow: hidden;
+
+    &.ChiselSelected {
+        .mineSquare::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .mineSquare:hover::after
+        {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #5468EC;
+            background: rgba(84, 104, 236, 20%);
+        }
+    }
+
+    &.HammerSelected {
+        .mineSquare::after {
+            content: "";
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .mineSquare:hover::after
+        {
+            width: 300%;
+            height: 300%;
+            border: 1px solid #F86058;
+            background: rgba(248, 96, 88, 20%);
+        }
+    }
+
+    &.BombSelected {
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        &:hover::after {
+            border: 1px solid #85DD9D;
+            background: rgba(133, 221, 157, 10%);
+        }
+    }
+
+    &.SurveySelected {
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        &:hover::after {
+            border: 1px solid #FFC300;
+            background: rgba(255, 195, 0, 10%);
+        }
+    }
+
+    &.tool-cooldown:hover::after,
+    &.tool-cooldown .mineSquare:hover::after{
+        border: 1px solid #202020;
+        background: rgba(0, 0, 0, 33%);
+    }
+}
+
+.search-mine-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+.tool-ui {
+    --tool-color: white;
+
+    &.Chisel-tool-ui {
+        --tool-color: #5468EC;
+    }
+
+    &.Hammer-tool-ui {
+        --tool-color: #F86058;
+    }
+
+    &.Bomb-tool-ui {
+        --tool-color: #85DD9D;
+    }
+
+    &.Survey-tool-ui {
+        --tool-color: #FFC300;
+    }
+}
