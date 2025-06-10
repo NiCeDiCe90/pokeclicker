@@ -340,6 +340,7 @@ ItemList.Beige_shard = new TreasureItem('Beige_shard', UndergroundItemValueType.
 ItemList.Slate_shard = new TreasureItem('Slate_shard', UndergroundItemValueType.Shard, 'Slate Shard');
 // Other
 ItemList.Palaeontologist_token = new TreasureItem('Palaeontologist_token', UndergroundItemValueType.Special, 'Palaeontologist Token');
+ItemList.Puzzle_plate = new TreasureItem('Puzzle_plate', UndergroundItemValueType.Special, 'Puzzle Plate');
 
 
 // Pokemon shop items

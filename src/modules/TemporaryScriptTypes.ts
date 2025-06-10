@@ -97,6 +97,7 @@ export type TmpAchievementTrackerType = any;
 export type TmpBattleFrontierType = any;
 export type TmpBattleCafeSaveObjectType = any;
 export type TmpDreamOrbControllerType = any;
+export type TmpPuzzleControllerType = any;
 export type TmpPurifyChamberType = any;
 export type TmpWeatherAppType = any;
 export type TmpZMovesType = any;
@@ -134,6 +135,7 @@ export type TmpGameType = {
     saveReminder: SaveReminder;
     battleCafe: TmpBattleCafeSaveObjectType;
     dreamOrbController: TmpDreamOrbControllerType;
+    puzzleController: TmpPuzzleControllerType;
     purifyChamber: TmpPurifyChamberType;
     weatherApp: TmpWeatherAppType;
     zMoves: TmpZMovesType;

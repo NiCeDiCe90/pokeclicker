@@ -1,0 +1,17 @@
+<div class="modal fade" id="puzzleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h5 class="modal-title">Puzzle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" data-bind="with: PuzzleController.currentPuzzle">
+                <img data-bind="attr:{src: PokemonHelper.getImage(pokemonId)}" style="max-width:96px" class="mb-2"/>
+                <p data-bind="text: 'Difficulty: ' + difficulty"></p>
+                <button class="btn btn-success" data-bind="click: PuzzleController.solveCurrent">Solve</button>
+            </div>
+        </div>
+    </div>
+</div>

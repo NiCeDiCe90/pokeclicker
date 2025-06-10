@@ -161,6 +161,14 @@ export function isGigantamaxForm(pokemonName: PokemonNameType): boolean {
     return pokemonName.startsWith('Gigantamax') || pokemonName.startsWith('Eternamax');
 }
 
+export function isPuzzleSolved(pokemonId: number): boolean {
+    return App.game.statistics.pokemonPuzzleSolved[pokemonId]() > 0;
+}
+
+export function puzzleCatchBonus(pokemonId: number): number {
+    return isPuzzleSolved(pokemonId) ? 5 : 0;
+}
+
 export const getAllShadowPokemon = ko.pureComputed((): Set<PokemonNameType> => {
     return new Set(Object.values(dungeonList).flatMap(d => d.allShadowPokemon()));
 });

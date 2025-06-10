@@ -31,7 +31,7 @@ class PokemonFactory {
         // TODO this monster formula needs to be improved. Preferably with graphs :D
         // Health has a +/- 10% variable based on base health stat compared to the average of the route
         const maxHealth: number = Math.round(PokemonFactory.routeHealth(route, region) * (0.9 + (basePokemon.hitpoints / routeAvgHp(region, route)) / 10));
-        const catchRate: number = this.catchRateHelper(basePokemon.catchRate);
+        const catchRate: number = this.catchRateHelper(basePokemon.catchRate, id);
         const exp: number = basePokemon.exp;
         const level: number = this.routeLevel(route, region);
         const money: number = this.routeMoney(route,region);
@@ -139,7 +139,7 @@ class PokemonFactory {
         const shiny = pokemon.shiny ? pokemon.shiny : this.generateShiny(GameConstants.SHINY_CHANCE_BATTLE);
         const gender = this.generateGender(basePokemon.gender.femaleRatio, basePokemon.gender.type);
         const shadow = pokemon.shadow;
-        const catchRate: number = this.catchRateHelper(basePokemon.catchRate);
+        const catchRate: number = this.catchRateHelper(basePokemon.catchRate, basePokemon.id);
         return new BattlePokemon(pokemon.name, basePokemon.id, basePokemon.type1, basePokemon.type2, pokemon.maxHealth, pokemon.level, catchRate, exp, new Amount(0, GameConstants.Currency.money), shiny, GameConstants.GYM_GEMS, gender, shadow, EncounterType.trainer);
     }
 
@@ -147,7 +147,7 @@ class PokemonFactory {
         const basePokemon = PokemonHelper.getPokemonByName(name);
         const id = basePokemon.id;
         const maxHealth: number = Math.floor(baseHealth * (1 + (chestsOpened / 5)));
-        const catchRate: number = this.catchRateHelper(basePokemon.catchRate);
+        const catchRate: number = this.catchRateHelper(basePokemon.catchRate, id);
         const exp: number = basePokemon.exp;
         const money = 0;
         const shiny: boolean = this.generateShiny(GameConstants.SHINY_CHANCE_DUNGEON);
@@ -174,7 +174,7 @@ class PokemonFactory {
         const maxHealth: number = Math.floor(baseHealth * (1 + (chestsOpened / 5)) / (isBoss ? 1 : trainerPokemon ** 0.75));
         const exp: number = basePokemon.exp;
         const shiny: boolean = pokemon.shiny ? pokemon.shiny : this.generateShiny(GameConstants.SHINY_CHANCE_DUNGEON);
-        const catchRate: number = this.catchRateHelper(basePokemon.catchRate);
+        const catchRate: number = this.catchRateHelper(basePokemon.catchRate, basePokemon.id);
         // Reward 2% or 5% (boss) of dungeon DT cost when the trainer mons are defeated
         const money = 0;
         const gender = this.generateGender(basePokemon.gender.femaleRatio, basePokemon.gender.type);
@@ -188,7 +188,7 @@ class PokemonFactory {
         const basePokemon = PokemonHelper.getPokemonByName(name);
         const id = basePokemon.id;
         const maxHealth: number = Math.floor(bossPokemon.baseHealth * (1 + (chestsOpened / 5)));
-        const catchRate: number = this.catchRateHelper(basePokemon.catchRate);
+        const catchRate: number = this.catchRateHelper(basePokemon.catchRate, id);
         const exp: number = basePokemon.exp;
         const money = 0;
         const shiny: boolean = this.generateShiny(GameConstants.SHINY_CHANCE_DUNGEON);
@@ -210,7 +210,7 @@ class PokemonFactory {
     public static generateTemporaryBattlePokemon(battle: TemporaryBattle, index: number): BattlePokemon {
         const pokemon = battle.getPokemonList()[index];
         const basePokemon = PokemonHelper.getPokemonByName(pokemon.name);
-        const catchRate: number = this.catchRateHelper(basePokemon.catchRate);
+        const catchRate: number = this.catchRateHelper(basePokemon.catchRate, basePokemon.id);
         const encounterType = battle.optionalArgs.isTrainerBattle
             ? EncounterType.trainer
             : App.game.gameState === GameConstants.GameState.dungeon
@@ -262,9 +262,10 @@ class PokemonFactory {
         return Rand.chance(roamingChance);
     }
 
-    private static catchRateHelper(baseCatchRate: number, noVariation = false): number {
+    private static catchRateHelper(baseCatchRate: number, pokemonId?: number, noVariation = false): number {
+        const bonus = pokemonId != undefined ? PokemonHelper.puzzleCatchBonus(pokemonId) : 0;
         const catchVariation = noVariation ? 0 : Rand.intBetween(-3, 3);
-        const catchRateRaw = Math.floor(Math.pow(baseCatchRate, 0.75)) + catchVariation;
+        const catchRateRaw = Math.floor(Math.pow(baseCatchRate + bonus, 0.75)) + catchVariation;
         return GameConstants.clipNumber(catchRateRaw, 0, 100);
     }
 
@@ -387,7 +388,7 @@ class PokemonFactory {
         const pokemon = Rand.fromWeightedArray(availablePokemon, weights);
         const pokemonData = pokemonMap[pokemon];
         const shiny = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_FARM);
-        const catchChance = PokemonFactory.catchRateHelper(pokemonData.catchRate + 25, true);
+        const catchChance = PokemonFactory.catchRateHelper(pokemonData.catchRate + 25, pokemonData.id, true);
         const wanderer = new WandererPokemon(pokemon, berry.type, catchChance, shiny);
         return wanderer;
     }
